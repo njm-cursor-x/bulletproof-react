@@ -4,6 +4,7 @@ import { HttpResponse, http } from 'msw';
 import { env } from '@/config/env';
 
 import { db, persistDb } from '../db';
+import { seedDemoWorkspace } from '../seed-demo';
 import {
   authenticate,
   hash,
@@ -78,7 +79,7 @@ export const authHandlers = [
         role = 'USER';
       }
 
-      db.user.create({
+      const user = db.user.create({
         ...userObject,
         role,
         password: hash(userObject.password),
@@ -86,6 +87,16 @@ export const authHandlers = [
       });
 
       await persistDb('user');
+
+      // New workspaces start with sample product and ops discussions when
+      // VITE_APP_SEED_DEMO_DATA=true (off for tests and e2e).
+      if (
+        env.SEED_DEMO_DATA &&
+        import.meta.env.MODE !== 'test' &&
+        role === 'ADMIN'
+      ) {
+        await seedDemoWorkspace({ teamId, adminId: user.id });
+      }
 
       const result = authenticate({
         email: userObject.email,

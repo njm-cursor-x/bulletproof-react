@@ -1,3 +1,5 @@
+> **Fork note:** on this branch, `apps/react-vite` is rebranded as **Threadmere**, a fictional standalone discussions and comments app for demos. See [`apps/react-vite/README.md`](apps/react-vite/README.md). The rest of this README is the original upstream README, and the project stays under the original [MIT License](LICENSE).
+
 
 <div align="center">
   <img src="docs/assets/logo.svg" width="100%" alt="Bulletproof React Logo" />
