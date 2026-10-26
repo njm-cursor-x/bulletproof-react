@@ -24,24 +24,22 @@ export const DiscussionView = ({ discussionId }: { discussionId: string }) => {
 
   return (
     <div>
-      <span className="text-xs font-bold">
-        {formatDate(discussion.createdAt)}
-      </span>
-      {discussion.author && (
-        <span className="ml-2 text-sm font-bold">
-          by {discussion.author.firstName} {discussion.author.lastName}
-        </span>
-      )}
-      <div className="mt-6 flex flex-col space-y-16">
+      <p className="text-sm text-slate-500">
+        <span>{formatDate(discussion.createdAt)}</span>
+        {discussion.author && (
+          <span className="ml-2 font-medium text-slate-700">
+            by {discussion.author.firstName} {discussion.author.lastName}
+          </span>
+        )}
+      </p>
+      <div className="mt-6 flex flex-col space-y-6">
         <div className="flex justify-end">
           <UpdateDiscussion discussionId={discussionId} />
         </div>
-        <div>
-          <div className="overflow-hidden bg-white shadow sm:rounded-lg">
-            <div className="px-4 py-5 sm:px-6">
-              <div className="mt-1 max-w-2xl text-sm text-gray-500">
-                <MDPreview value={discussion.body} />
-              </div>
+        <div className="overflow-hidden rounded-xl border border-slate-200 bg-white shadow-sm">
+          <div className="px-4 py-5 sm:px-6">
+            <div className="max-w-3xl text-sm text-slate-700">
+              <MDPreview value={discussion.body} />
             </div>
           </div>
         </div>

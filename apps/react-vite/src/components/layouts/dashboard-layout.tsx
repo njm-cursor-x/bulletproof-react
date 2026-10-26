@@ -27,10 +27,13 @@ type SideNavigationItem = {
 
 const Logo = () => {
   return (
-    <Link className="flex items-center text-white" to={paths.home.getHref()}>
-      <img className="h-8 w-auto" src={logo} alt="Workflow" />
-      <span className="text-sm font-semibold text-white">
-        Bulletproof React
+    <Link
+      className="flex items-center gap-2 text-white"
+      to={paths.home.getHref()}
+    >
+      <img className="size-8" src={logo} alt="" />
+      <span className="text-base font-semibold tracking-tight text-white">
+        Threadmere
       </span>
     </Link>
   );
@@ -70,7 +73,7 @@ const Progress = () => {
 
   return (
     <div
-      className="fixed left-0 top-0 h-1 bg-blue-500 transition-all duration-200 ease-in-out"
+      className="fixed left-0 top-0 h-1 bg-teal-400 transition-all duration-200 ease-in-out"
       style={{ width: `${progress}%` }}
     ></div>
   );
@@ -94,7 +97,7 @@ export function DashboardLayout({ children }: { children: React.ReactNode }) {
 
   return (
     <div className="flex min-h-screen w-full flex-col bg-muted/40">
-      <aside className="fixed inset-y-0 left-0 z-10 hidden w-60 flex-col border-r bg-black sm:flex">
+      <aside className="fixed inset-y-0 left-0 z-10 hidden w-60 flex-col border-r border-slate-800 bg-slate-950 sm:flex">
         <nav className="flex flex-col items-center gap-4 px-2 py-4">
           <div className="flex h-16 shrink-0 items-center px-4">
             <Logo />
@@ -106,16 +109,17 @@ export function DashboardLayout({ children }: { children: React.ReactNode }) {
               end={item.name !== 'Discussions'}
               className={({ isActive }) =>
                 cn(
-                  'text-gray-300 hover:bg-gray-700 hover:text-white',
-                  'group flex flex-1 w-full items-center rounded-md p-2 text-base font-medium',
-                  isActive && 'bg-gray-900 text-white',
+                  'text-slate-300 hover:bg-slate-800 hover:text-white',
+                  'group flex flex-1 w-full items-center rounded-lg px-3 py-2 text-sm font-medium',
+                  isActive &&
+                    'bg-teal-500/15 text-white ring-1 ring-teal-400/30',
                 )
               }
             >
               <item.icon
                 className={cn(
-                  'text-gray-400 group-hover:text-gray-300',
-                  'mr-4 size-6 shrink-0',
+                  'text-slate-400 group-hover:text-teal-300',
+                  'mr-3 size-5 shrink-0',
                 )}
                 aria-hidden="true"
               />
@@ -136,7 +140,7 @@ export function DashboardLayout({ children }: { children: React.ReactNode }) {
             </DrawerTrigger>
             <DrawerContent
               side="left"
-              className="bg-black pt-10 text-white sm:max-w-60"
+              className="bg-slate-950 pt-10 text-white sm:max-w-60"
             >
               <nav className="grid gap-6 text-lg font-medium">
                 <div className="flex h-16 shrink-0 items-center px-4">
@@ -149,16 +153,17 @@ export function DashboardLayout({ children }: { children: React.ReactNode }) {
                     end
                     className={({ isActive }) =>
                       cn(
-                        'text-gray-300 hover:bg-gray-700 hover:text-white',
-                        'group flex flex-1 w-full items-center rounded-md p-2 text-base font-medium',
-                        isActive && 'bg-gray-900 text-white',
+                        'text-slate-300 hover:bg-slate-800 hover:text-white',
+                        'group flex flex-1 w-full items-center rounded-lg px-3 py-2 text-sm font-medium',
+                        isActive &&
+                          'bg-teal-500/15 text-white ring-1 ring-teal-400/30',
                       )
                     }
                   >
                     <item.icon
                       className={cn(
-                        'text-gray-400 group-hover:text-gray-300',
-                        'mr-4 size-6 shrink-0',
+                        'text-slate-400 group-hover:text-teal-300',
+                        'mr-3 size-5 shrink-0',
                       )}
                       aria-hidden="true"
                     />

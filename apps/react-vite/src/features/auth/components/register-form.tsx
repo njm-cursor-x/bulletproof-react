@@ -67,7 +67,7 @@ export const RegisterForm = ({
                 checked={chooseTeam}
                 onCheckedChange={setChooseTeam}
                 className={`${
-                  chooseTeam ? 'bg-blue-600' : 'bg-gray-200'
+                  chooseTeam ? 'bg-teal-600' : 'bg-gray-200'
                 } relative inline-flex h-6 w-11 items-center rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-slate-500 focus:ring-offset-2`}
                 id="choose-team"
               />
@@ -108,7 +108,7 @@ export const RegisterForm = ({
         <div className="text-sm">
           <Link
             to={paths.auth.login.getHref(redirectTo)}
-            className="font-medium text-blue-600 hover:text-blue-500"
+            className="font-medium text-teal-700 hover:text-teal-600"
           >
             Log In
           </Link>

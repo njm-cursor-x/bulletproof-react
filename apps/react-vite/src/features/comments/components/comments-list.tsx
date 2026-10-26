@@ -35,7 +35,7 @@ export const CommentsList = ({ discussionId }: CommentsListProps) => {
       <div
         role="list"
         aria-label="comments"
-        className="flex h-40 flex-col items-center justify-center bg-white text-gray-500"
+        className="flex h-40 flex-col items-center justify-center rounded-xl border border-dashed border-slate-300 bg-white text-slate-500"
       >
         <ArchiveX className="size-10" />
         <h4>No Comments Found</h4>
@@ -49,31 +49,42 @@ export const CommentsList = ({ discussionId }: CommentsListProps) => {
           <li
             aria-label={`comment-${comment.body}-${index}`}
             key={comment.id || index}
-            className="w-full bg-white p-4 shadow-sm"
+            className="w-full rounded-xl border border-slate-200 bg-white p-4 shadow-sm"
           >
-            <Authorization
-              policyCheck={POLICIES['comment:delete'](
-                user.data as User,
-                comment,
-              )}
-            >
-              <div className="flex justify-between">
-                <div>
-                  <span className="text-xs font-semibold">
-                    {formatDate(comment.createdAt)}
-                  </span>
+            <div className="flex items-start justify-between gap-4">
+              <div className="flex items-center gap-3">
+                <span
+                  aria-hidden="true"
+                  className="flex size-8 shrink-0 items-center justify-center rounded-full bg-teal-50 text-xs font-semibold text-teal-800"
+                >
+                  {comment.author
+                    ? `${comment.author.firstName?.[0] ?? ''}${comment.author.lastName?.[0] ?? ''}`
+                    : '?'}
+                </span>
+                <div className="leading-tight">
                   {comment.author && (
-                    <span className="text-xs font-bold">
-                      {' '}
-                      by {comment.author.firstName} {comment.author.lastName}
+                    <span className="block text-sm font-semibold text-slate-900">
+                      {comment.author.firstName} {comment.author.lastName}
                     </span>
                   )}
+                  <span className="text-xs text-slate-500">
+                    {formatDate(comment.createdAt)}
+                  </span>
                 </div>
-                <DeleteComment discussionId={discussionId} id={comment.id} />
               </div>
-            </Authorization>
+              <Authorization
+                policyCheck={POLICIES['comment:delete'](
+                  user.data as User,
+                  comment,
+                )}
+              >
+                <DeleteComment discussionId={discussionId} id={comment.id} />
+              </Authorization>
+            </div>
 
-            <MDPreview value={comment.body} />
+            <div className="mt-2 pl-11">
+              <MDPreview value={comment.body} />
+            </div>
           </li>
         ))}
       </ul>
